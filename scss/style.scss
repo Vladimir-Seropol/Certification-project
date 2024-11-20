@@ -1,0 +1,227 @@
+@font-face {
+    font-family: IBM Plex Mono;
+    src: url(../fons/IBMPlexMono-Regular.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+
+h1 {
+    font-family: IBM Plex Mono;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 52px;
+    letter-spacing: -0.08em;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #4520ab;
+    text-align: center;
+    margin-bottom: 86px;
+    margin-top: 20px;
+}
+
+.container {
+    max-width: 540px;
+    margin: 50px auto;
+    padding: 0 6px;
+    border: 1px solid #ccc;
+    border-radius: 8px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    background-color: #f9f9f9;
+}
+
+.add{
+    max-width: 500px;
+    margin: 0 auto;
+}
+.record {
+    display: flex;
+    align-items: center;
+    max-width: 500px;
+    justify-content: space-between;
+    border-bottom: 1px solid #111111;
+    font-family: IBM Plex Mono;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: -0.03em;
+  
+    div {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        height: 50px;
+        padding-left: 12px;
+        justify-content: space-between;
+    }
+    div:nth-child(1) {
+       background-color: #f0f0f0;
+       width: 50%; 
+    }
+    div:nth-child(2) {
+        
+        border-left: 2px solid #111111;
+        background-color: #cecbcb; 
+    }
+    div:nth-child(3) {
+        background-color: #cecbcb;
+        padding-left: 0;
+        padding-right: 12px;
+       position: relative;
+       right: 21px;
+       &:nth-child(1){
+        border-radius: 8px;
+       }
+    }
+}
+
+.record:last-child {
+    margin-bottom: 60px;
+}
+
+.input-container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    padding: 0 10px;
+    max-width: 500px;
+    height: 56px;
+    border-radius: 14px;
+    border: 2px solid #111111;
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    background-color: #f9f9f9;
+    &:focus {
+        outline: none;
+        background: none;
+    }
+}
+
+.add-button {
+    width: 107px;
+    height: 38.08px;
+    padding: 0px 12px 5px 12px;
+    border-radius: 8px;
+    background: #111111;
+    box-shadow: #adadad 5px 5px 5px;
+    font-family: IBM Plex Mono;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 23.4px;
+    letter-spacing: -0.03em;
+    text-align: left;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+        background-color: #4520ab;
+    }
+    &:active {
+        box-shadow: none;
+    }
+}
+
+.records-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    & div:last-child {
+        border-radius: 0 0 8px 8px;
+    }
+}
+
+.img-delete{
+    background-color: #cecbcb;
+}
+
+.delete-button-container{
+    width: 20px;
+}
+
+.delete-all-button {
+    display: flex;
+    margin: 0 auto;
+    width: 176px;
+    height: 38px;
+    padding: 6px 10px 8px 10px;
+    border-radius: 8px;
+    background-color: #adadad;
+    font-family: IBM Plex Mono;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 23.4px;
+    letter-spacing: -0.05em;
+    box-shadow: #adadad 5px 5px 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 30px;
+    &:hover {
+        background-color: #111111;
+        color: #ffffff;
+    }
+    &:active {
+        box-shadow: none;
+    }
+}
+
+  
+
+
+  .cyrillic-text, .latin-text {
+    white-space: nowrap;
+    text-overflow: ellipsis; 
+    position: relative; 
+    max-width: 245px; 
+    display: inline-block;                          
+    flex-shrink: 0;  
+  }
+  
+
+.tooltip {
+    display: none; 
+    background-color: #FFFFFF;
+    color: #111111;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    top: -40px;
+    left: 10%;
+    z-index: 5;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  
+
+  .record:hover .tooltip {
+    display: block;
+  }
+  
+@media screen and (max-width: 565px) {
+    .record div:nth-child(3){
+        right: 30px;
+    }
+}
+
+@media screen and (max-width: 393px){
+    .add-button{
+        position: relative;
+        right: 35px;
+    }
+}
