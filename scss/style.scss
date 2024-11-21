@@ -67,9 +67,9 @@ h1 {
     div:nth-child(1) {
        background-color: #f0f0f0;
        width: 50%; 
+        border-radius: 0 0 0 8px;
     }
     div:nth-child(2) {
-        
         border-left: 2px solid #111111;
         background-color: #cecbcb; 
     }
@@ -79,15 +79,17 @@ h1 {
         padding-right: 12px;
        position: relative;
        right: 21px;
-       &:nth-child(1){
-        border-radius: 8px;
-       }
+        border-radius: 0 0 8px 0 ;
     }
+ 
 }
 
 .record:last-child {
+    border-bottom: none;
     margin-bottom: 60px;
 }
+
+
 
 .input-container {
     margin: 0 auto;
@@ -117,7 +119,7 @@ input {
     width: 107px;
     height: 38.08px;
     padding: 0px 12px 5px 12px;
-    border-radius: 8px;
+    // border-radius: 8px;
     background: #111111;
     box-shadow: #adadad 5px 5px 5px;
     font-family: IBM Plex Mono;
@@ -141,9 +143,6 @@ input {
     display: flex;
     flex-direction: column;
     position: relative;
-    & div:last-child {
-        border-radius: 0 0 8px 8px;
-    }
 }
 
 .img-delete{
@@ -152,6 +151,7 @@ input {
 
 .delete-button-container{
     width: 20px;
+    
 }
 
 .delete-all-button {
@@ -195,6 +195,8 @@ input {
 
 .tooltip {
     display: none; 
+    max-width: 220px;
+    overflow: hidden;
     background-color: #FFFFFF;
     color: #111111;
     text-align: center;
@@ -208,19 +210,45 @@ input {
     transition: all 0.3s ease;
   }
   
-
-  .record:hover .tooltip {
-    display: block;
+//   .latin-text:hover,
+  .cyrillic-text:hover .tooltip {
+    display: inline-block;
   }
+
   
-@media screen and (max-width: 565px) {
+  
+@media screen and (max-width: 566px) {
+    .container {
+        padding: 0;
+        border: none;
+        box-shadow: none; 
+    }
+    .record{
+        max-width: 490px;
+    }
     .record div:nth-child(3){
         right: 30px;
+        
     }
 }
 
+@media screen and (max-width: 500px){
+    .latin-text .tooltip{
+        left: -50%;
+    }
+    
+}
+
 @media screen and (max-width: 393px){
+    h1{
+font-size: 36px;
+line-height: 46.8px;
+letter-spacing: -0.07em;
+text-align: center;
+
+    }
     .add-button{
+       
         position: relative;
         right: 35px;
     }

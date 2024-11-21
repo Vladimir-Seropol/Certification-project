@@ -46,7 +46,7 @@ function updateRecordNumbers() {
         if (isCyrillicTruncated) {
             const newTooltip = document.createElement("span");
             newTooltip.className = "tooltip";
-            newTooltip.textContent = updatedText.split(' ').slice(1).join(' ');
+            newTooltip.textContent = updatedText.split(' ').slice(1).join(' '); // Используем полный текст
             cyrillicText.appendChild(newTooltip);
         }
     });
@@ -58,6 +58,7 @@ function handleDeleteButtonClick(recordDiv) {
     updateRecordNumbers(); 
 }
 
+
 // Функция для добавления записи
 function addRecord() {
     const inputValue = input.value.trim();
@@ -68,31 +69,29 @@ function addRecord() {
         const recordDiv = document.createElement("div");
         recordDiv.className = "record";
 
-        
-        const cyrillicText = document.createElement("div");
-        cyrillicText.className = "cyrillic-text";
-        cyrillicText.textContent = `${recordsContainer.childElementCount + 1} ${inputValue}`;
-
-      
-        const latinText = document.createElement("div");
-        latinText.className = "latin-text";
-        latinText.textContent = transliterated;
+        // Полный текст для отображения в tooltip
+        const fullCyrillicText = `${recordsContainer.childElementCount + 1} ${inputValue}`;
+        const fullLatinText = transliterated;
 
         // Обрезаем тексты
-        const isCyrillicTruncated = truncateText(cyrillicText, `${recordsContainer.childElementCount + 1} ${inputValue}`);
-        const isLatinTruncated = truncateText(latinText, transliterated);
+        const cyrillicText = document.createElement("div");
+        cyrillicText.className = "cyrillic-text";
+        const isCyrillicTruncated = truncateText(cyrillicText, fullCyrillicText);
 
-       
+        const latinText = document.createElement("div");
+        latinText.className = "latin-text";
+        const isLatinTruncated = truncateText(latinText, fullLatinText);
+
+        // Создаем tooltip для каждого текста, если он обрезан
         const tooltipCyrillic = document.createElement("span");
         tooltipCyrillic.className = "tooltip";
-        tooltipCyrillic.textContent = inputValue;
+        tooltipCyrillic.textContent = fullCyrillicText; // Показываем полный текст без многоточия
 
-      
         const tooltipLatin = document.createElement("span");
         tooltipLatin.className = "tooltip";
-        tooltipLatin.textContent = transliterated;
+        tooltipLatin.textContent = fullLatinText; // Показываем полный текст без многоточия
 
-        // Добавляем всплывающее окно в элементы текста, если они обрезаны
+        // Добавляем tooltip, если текст обрезан
         if (isCyrillicTruncated) {
             cyrillicText.appendChild(tooltipCyrillic);
         }
@@ -101,30 +100,35 @@ function addRecord() {
             latinText.appendChild(tooltipLatin);
         }
 
-        // Показываем tooltip при наведении на блок record
-        recordDiv.addEventListener("mouseenter", function () {
+        // Добавляем обработчики для показа/скрытия tooltips при наведении на текст
+        cyrillicText.addEventListener("mouseenter", function () {
             if (isCyrillicTruncated) {
                 tooltipCyrillic.style.display = "block";
             }
+        });
+
+        cyrillicText.addEventListener("mouseleave", function () {
+            if (isCyrillicTruncated) {
+                tooltipCyrillic.style.display = "none";
+            }
+        });
+
+        latinText.addEventListener("mouseenter", function () {
             if (isLatinTruncated) {
                 tooltipLatin.style.display = "block";
             }
         });
 
-        recordDiv.addEventListener("mouseleave", function () {
-            if (isCyrillicTruncated) {
-                tooltipCyrillic.style.display = "none";
-            }
+        latinText.addEventListener("mouseleave", function () {
             if (isLatinTruncated) {
                 tooltipLatin.style.display = "none";
             }
         });
 
-        // Создаем отдельный div для кнопки удаления
+        // Создаем кнопку для удаления
         const deleteButtonContainer = document.createElement("div");
         deleteButtonContainer.className = "delete-button-container";
 
-        // Изображение для удаления
         const deleteButton = document.createElement("img");
         deleteButton.src = "./images/delete.svg";
         deleteButton.alt = "Удалить";
@@ -134,7 +138,6 @@ function addRecord() {
             handleDeleteButtonClick(recordDiv);
         });
 
-        // Добавляем изображение в контейнер
         deleteButtonContainer.appendChild(deleteButton);
 
         // Добавляем все элементы в recordDiv
@@ -150,6 +153,11 @@ function addRecord() {
         updateRecordNumbers(); 
     }
 }
+
+
+
+
+
 
 // Функция для обрезки текста и добавления многоточия
 function truncateText(element, text) {
