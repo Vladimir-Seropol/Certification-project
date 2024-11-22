@@ -32,11 +32,6 @@ h1 {
 .container {
   max-width: 540px;
   margin: 50px auto;
-  padding: 0 6px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
 }
 
 .add {
@@ -45,6 +40,7 @@ h1 {
 }
 
 .record {
+  position: relative;
   display: flex;
   align-items: center;
   max-width: 500px;
@@ -66,20 +62,24 @@ h1 {
 }
 .record div:nth-child(1) {
   background-color: #f0f0f0;
-  width: 50%;
-  border-radius: 0 0 0 8px;
+  width: 10%;
 }
 .record div:nth-child(2) {
+  background-color: #f0f0f0;
+  width: 45%;
+  border-radius: 0 0 0 8px;
+}
+.record div:nth-child(3) {
   border-left: 2px solid #111111;
   background-color: #cecbcb;
 }
-.record div:nth-child(3) {
+.record div:nth-child(4) {
   background-color: #cecbcb;
   padding-left: 0;
-  padding-right: 12px;
+  padding-right: 20px;
   position: relative;
-  right: 21px;
-  border-radius: 0 0 8px 0;
+  right: 30px;
+  cursor: pointer;
 }
 
 .record:last-child {
@@ -115,8 +115,8 @@ input:focus {
   width: 107px;
   height: 38.08px;
   padding: 0px 12px 5px 12px;
+  border-radius: 8px;
   background: #111111;
-  box-shadow: #adadad 5px 5px 5px;
   font-family: IBM Plex Mono;
   font-size: 18px;
   font-weight: 400;
@@ -161,7 +161,6 @@ input:focus {
   font-weight: 400;
   line-height: 23.4px;
   letter-spacing: -0.05em;
-  box-shadow: #adadad 5px 5px 5px;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-bottom: 30px;
@@ -170,67 +169,111 @@ input:focus {
   background-color: #111111;
   color: #ffffff;
 }
-.delete-all-button:active {
-  box-shadow: none;
-}
-
-.cyrillic-text, .latin-text {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  position: relative;
-  max-width: 245px;
-  display: inline-block;
-  flex-shrink: 0;
-}
 
 .tooltip {
-  display: none;
+  opacity: 0;
+  pointer-events: none;
   max-width: 220px;
-  overflow: hidden;
+  white-space: normal;
   background-color: #FFFFFF;
   color: #111111;
   text-align: center;
   border-radius: 5px;
   padding: 5px;
   position: absolute;
-  top: -40px;
-  left: 10%;
+  bottom: 40px;
   z-index: 5;
   border-radius: 10px;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
-.cyrillic-text:hover .tooltip {
+.cyrillic-text, .latin-text {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 245px;
   display: inline-block;
+  flex-shrink: 0;
 }
 
-@media screen and (max-width: 566px) {
-  .container {
-    padding: 0;
-    border: none;
-    box-shadow: none;
+.latin-text:hover .tooltip,
+.cyrillic-text:hover .tooltip {
+  opacity: 1;
+}
+
+.title-cyrillic-text {
+  width: 350px !important;
+  margin-right: 2px;
+  flex-shrink: 1;
+}
+
+.title-latin-text {
+  max-width: 215px !important;
+  background-color: #cecbcb !important;
+  border-radius: 0 !important;
+  flex-shrink: 0;
+  border-left: 2px solid #000;
+}
+
+.title-img-delete {
+  border-left: none !important;
+  padding: 0 !important;
+  width: 40px !important;
+  padding-right: 5px !important;
+}
+
+@media screen and (max-width: 536px) {
+  .record div:nth-child(4) {
+    padding-right: 18px;
   }
-  .record {
-    max-width: 490px;
-  }
-  .record div:nth-child(3) {
-    right: 30px;
+}
+@media screen and (max-width: 515px) {
+  .record div:nth-child(4) {
+    padding-right: 15px;
   }
 }
 @media screen and (max-width: 500px) {
-  .latin-text .tooltip {
-    left: -50%;
+  .title-cyrillic-text {
+    margin-right: 4px !important;
+    padding-right: 56px;
+  }
+  .record div:nth-child(4) {
+    padding-right: 0px;
   }
 }
-@media screen and (max-width: 393px) {
+@media screen and (max-width: 430px) {
+  .title-img-delete {
+    position: relative;
+    left: 0px !important;
+    padding-right: 10px !important;
+  }
+  .title-latin-text {
+    max-width: 165px !important;
+  }
+}
+@media screen and (max-width: 400px) {
+  .title-img-delete {
+    padding-right: 12px !important;
+  }
+  .title-latin-text {
+    max-width: 148px !important;
+  }
+}
+@media screen and (max-width: 384px) {
   h1 {
     font-size: 36px;
     line-height: 46.8px;
     letter-spacing: -0.07em;
     text-align: center;
   }
-  .add-button {
+  .title-latin-text {
+    max-width: 150px !important;
+  }
+  .title-cyrillic-text {
+    margin-right: 0px !important;
+  }
+  .title-img-delete {
     position: relative;
-    right: 35px;
+    left: -10px !important;
+    padding-right: 10px !important;
   }
 }
