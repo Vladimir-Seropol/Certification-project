@@ -1,24 +1,36 @@
 // Создаем фиксированный элемент с номером 1
 const firstRecordDiv = document.createElement("div");
 firstRecordDiv.className = "record";
-const firstCyrillicText = document.createElement("div");
-firstCyrillicText.className = "cyrillic-text title-cyrillic-text ";
-firstCyrillicText.textContent = "1 Привет👋🏻";
-firstCyrillicText.style.borderRadius = "8px 0 0 0";
 
+// Создаем блок для отображения номера записи
+const firstRecordNumber = document.createElement("div");
+firstRecordNumber.className = "record-number";
+firstRecordNumber.textContent = "1"; 
+firstRecordNumber.style.borderRadius = "8px 0 0 0"; 
+
+// Создаем текст на кириллице
+const firstCyrillicText = document.createElement("div");
+firstCyrillicText.className = "cyrillic-text";
+firstCyrillicText.textContent = "Привет👋🏻";
+
+
+// Создаем текст на латинице
 const firstLatinText = document.createElement("div");
-firstLatinText.className = "latin-text title-latin-text";
+firstLatinText.className = "latin-text";
 firstLatinText.textContent = "Privet";
 
+// Создаем блок для кнопки удаления
 const deleteButtonBlock = document.createElement("div");
-deleteButtonBlock.className = "img-delete title-img-delete";
-deleteButtonBlock.style.borderRadius = "0 8px 0 0";
+deleteButtonBlock.className = "img-delete";
+deleteButtonBlock.style.borderRadius = "0 8px 0 0";  
 
-// Изображение
+// Создаем изображение для кнопки удаления
 const deleteButtonImg = document.createElement("img");
 deleteButtonImg.src = "./images/delete.svg";
 deleteButtonImg.className = "img-delete";
 
+// Собираем элементы в родительский блок для фиксированной записи
+firstRecordDiv.appendChild(firstRecordNumber);  
 firstRecordDiv.appendChild(firstCyrillicText);
 firstRecordDiv.appendChild(firstLatinText);
 firstRecordDiv.appendChild(deleteButtonBlock);
@@ -26,20 +38,39 @@ deleteButtonBlock.appendChild(deleteButtonImg);
 
 
 
-// Функция для пересчета номеров записей
+// Функция для пересчета номеров записей (если нужно обновить номера динамических записей)
 function updateRecordNumbers() {
     const records = recordsContainer.querySelectorAll(".record");
 
-    // Обновляем порядковые номера
     records.forEach((record, index) => {
+        // Игнорируем фиксированный элемент (с номером 1)
+        if (record === firstRecordDiv) return;
+
         const recordNumber = record.querySelector(".record-number");
-        
-        // Обновляем порядковый номер
+        const deleteButtonBlock = record.querySelector(".img-delete");
+
         if (recordNumber) {
-            recordNumber.textContent = index + 1;  
+            recordNumber.textContent = index + 1;  // Обновляем номер
+            // Применяем border-radius только для верхнего угла, если элемент не последний
+            if (index === records.length - 1) {
+                recordNumber.style.borderRadius = "0 0 0 8px ";  // Верхний левый и правый угол для последнего элемента
+            } else {
+                recordNumber.style.borderRadius = "0 0 8px 0";  // Для всех остальных отменяем border-radius
+            }
         }
+
+        if (deleteButtonBlock) {
+            // Применяем border-radius только для нижнего угла, если элемент не последний
+            if (index === records.length - 1) {
+                deleteButtonBlock.style.borderRadius = "8px";  // Нижний левый и правый угол для последнего элемента
+            } else {
+                deleteButtonBlock.style.borderRadius = "0";  // Для всех остальных отменяем border-radius
+            }
+        }
+
     });
 }
+
 
 // Функция для добавления записи
 function addRecord() {
@@ -51,11 +82,9 @@ function addRecord() {
         const recordDiv = document.createElement("div");
         recordDiv.className = "record";
 
-        // Полный текст для отображения в tooltip
-        const fullCyrillicText = inputValue; 
+        const fullCyrillicText = inputValue;
         const fullLatinText = transliterated;
 
-        // Обрезаем тексты
         const cyrillicText = document.createElement("div");
         cyrillicText.className = "cyrillic-text";
         const isCyrillicTruncated = truncateText(cyrillicText, fullCyrillicText);
@@ -64,27 +93,22 @@ function addRecord() {
         latinText.className = "latin-text";
         const isLatinTruncated = truncateText(latinText, fullLatinText);
 
-        // Создаем tooltip для каждого текста, если он обрезан
         const tooltipCyrillic = document.createElement("span");
         tooltipCyrillic.className = "tooltip";
-        tooltipCyrillic.textContent = fullCyrillicText; 
+        tooltipCyrillic.textContent = fullCyrillicText;
 
         const tooltipLatin = document.createElement("span");
         tooltipLatin.className = "tooltip";
-        tooltipLatin.textContent = fullLatinText; 
+        tooltipLatin.textContent = fullLatinText;
 
-        // Добавляем tooltip, если текст обрезан
         if (isCyrillicTruncated) {
-           
-            cyrillicText.appendChild(tooltipCyrillic);     
-        } 
+            cyrillicText.appendChild(tooltipCyrillic);
+        }
 
         if (isLatinTruncated) {
-            
-            latinText.appendChild(tooltipLatin);        
-        } 
+            latinText.appendChild(tooltipLatin);
+        }
 
-        // Создаем кнопку для удаления
         const deleteButtonContainer = document.createElement("div");
         deleteButtonContainer.className = "delete-button-container";
 
@@ -98,35 +122,32 @@ function addRecord() {
 
         deleteButtonContainer.appendChild(deleteButton);
 
-        // Добавляем порядковый номер в record
         const numberElement = document.createElement("div");
         numberElement.className = "record-number";
-        numberElement.textContent = recordsContainer.childElementCount + 1;  
+        numberElement.textContent = recordsContainer.childElementCount + 1;
 
-        // Добавляем все элементы в recordDiv
-        recordDiv.appendChild(numberElement); 
+        recordDiv.appendChild(numberElement);
         recordDiv.appendChild(cyrillicText);
         recordDiv.appendChild(latinText);
         recordDiv.appendChild(deleteButtonContainer);
 
-        // Добавляем запись в контейнер
         recordsContainer.appendChild(recordDiv);
 
         input.value = "";
 
-        updateRecordNumbers(); 
+        updateRecordNumbers();
     }
 }
 
 // Функция для удаления записи
 function handleDeleteButtonClick(recordDiv) {
     recordsContainer.removeChild(recordDiv);
-    updateRecordNumbers();  
+    updateRecordNumbers();
 }
 
-// Функция для обрезки текста и добавления многоточия
+// Функция для обрезки текста
 function truncateText(element, text) {
-    const maxLength = 12; 
+    const maxLength = 12;
     if (text.length > maxLength) {
         element.textContent = text.substring(0, maxLength) + "...";
         return true;
@@ -134,5 +155,6 @@ function truncateText(element, text) {
     element.textContent = text;
     return false;
 }
+
 
 renderApp();

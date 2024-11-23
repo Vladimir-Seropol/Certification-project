@@ -67,7 +67,6 @@ h1 {
 .record div:nth-child(2) {
   background-color: #f0f0f0;
   width: 45%;
-  border-radius: 0 0 0 8px;
 }
 .record div:nth-child(3) {
   border-left: 2px solid #111111;
@@ -200,27 +199,6 @@ input:focus {
   opacity: 1;
 }
 
-.title-cyrillic-text {
-  width: 350px !important;
-  margin-right: 2px;
-  flex-shrink: 1;
-}
-
-.title-latin-text {
-  max-width: 215px !important;
-  background-color: #cecbcb !important;
-  border-radius: 0 !important;
-  flex-shrink: 0;
-  border-left: 2px solid #000;
-}
-
-.title-img-delete {
-  border-left: none !important;
-  padding: 0 !important;
-  width: 40px !important;
-  padding-right: 5px !important;
-}
-
 @media screen and (max-width: 536px) {
   .record div:nth-child(4) {
     padding-right: 18px;
@@ -232,30 +210,8 @@ input:focus {
   }
 }
 @media screen and (max-width: 500px) {
-  .title-cyrillic-text {
-    margin-right: 4px !important;
-    padding-right: 56px;
-  }
   .record div:nth-child(4) {
     padding-right: 0px;
-  }
-}
-@media screen and (max-width: 430px) {
-  .title-img-delete {
-    position: relative;
-    left: 0px !important;
-    padding-right: 10px !important;
-  }
-  .title-latin-text {
-    max-width: 165px !important;
-  }
-}
-@media screen and (max-width: 400px) {
-  .title-img-delete {
-    padding-right: 12px !important;
-  }
-  .title-latin-text {
-    max-width: 148px !important;
   }
 }
 @media screen and (max-width: 384px) {
@@ -264,16 +220,5 @@ input:focus {
     line-height: 46.8px;
     letter-spacing: -0.07em;
     text-align: center;
-  }
-  .title-latin-text {
-    max-width: 150px !important;
-  }
-  .title-cyrillic-text {
-    margin-right: 0px !important;
-  }
-  .title-img-delete {
-    position: relative;
-    left: -10px !important;
-    padding-right: 10px !important;
   }
 }
