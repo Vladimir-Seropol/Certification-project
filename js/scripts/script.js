@@ -38,7 +38,7 @@ deleteButtonBlock.appendChild(deleteButtonImg);
 
 
 
-// Функция для пересчета номеров записей (если нужно обновить номера динамических записей)
+// Функция для пересчета номеров записей 
 function updateRecordNumbers() {
     const records = recordsContainer.querySelectorAll(".record");
 
@@ -50,21 +50,21 @@ function updateRecordNumbers() {
         const deleteButtonBlock = record.querySelector(".img-delete");
 
         if (recordNumber) {
-            recordNumber.textContent = index + 1;  // Обновляем номер
-            // Применяем border-radius только для верхнего угла, если элемент не последний
+            recordNumber.textContent = index + 1;  
+          
             if (index === records.length - 1) {
-                recordNumber.style.borderRadius = "0 0 0 8px ";  // Верхний левый и правый угол для последнего элемента
+                recordNumber.style.borderRadius = "0 0 0 8px "; 
             } else {
-                recordNumber.style.borderRadius = "0 0 8px 0";  // Для всех остальных отменяем border-radius
+                recordNumber.style.borderRadius = "0 ";  
             }
         }
 
         if (deleteButtonBlock) {
-            // Применяем border-radius только для нижнего угла, если элемент не последний
+            
             if (index === records.length - 1) {
-                deleteButtonBlock.style.borderRadius = "8px";  // Нижний левый и правый угол для последнего элемента
+                deleteButtonBlock.style.borderRadius = "0 0 8px 0";  
             } else {
-                deleteButtonBlock.style.borderRadius = "0";  // Для всех остальных отменяем border-radius
+                deleteButtonBlock.style.borderRadius = "0";  
             }
         }
 

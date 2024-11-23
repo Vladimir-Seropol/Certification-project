@@ -108,11 +108,14 @@ input {
     padding: 10px;
     font-size: 16px;
     border: none;
-    background-color: #f9f9f9;
     &:focus {
         outline: none;
         background: none;
     }
+    &:active{
+        background-color: none;
+    }
+    
 }
 
 .add-button {
