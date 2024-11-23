@@ -60,6 +60,7 @@ deleteAllImage.src = "./images/delete.svg";
 deleteAllImage.style.width = "20px";
 deleteAllImage.style.height = "20px";
 deleteAllImage.style.marginRight = "5px";
+deleteAllImage.style.verticalAlign = "middle";
 
 // Вставляем изображение после латинского текста
 firstLatinText.appendChild(deleteAllImage);
@@ -67,7 +68,7 @@ firstLatinText.appendChild(deleteAllImage);
 // Создаем кнопку "Удалить все"
 const deleteAllButton = document.createElement("button");
 deleteAllButton.className = "delete-all-button";
-deleteAllButton.textContent = "Удалить все";
+deleteAllButton.textContent = "Очистить все";
 deleteAllButton.id = "deleteAllButton";
 
 

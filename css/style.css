@@ -154,8 +154,9 @@ input:active {
   margin: 0 auto;
   width: 176px;
   height: 38px;
-  padding: 6px 10px 8px 10px;
+  padding: 8px 10px;
   border-radius: 8px;
+  border: none;
   background-color: #adadad;
   font-family: IBM Plex Mono;
   font-size: 18px;
@@ -194,6 +195,7 @@ input:active {
   max-width: 245px;
   display: inline-block;
   flex-shrink: 0;
+  overflow: hidden;
 }
 
 .latin-text:hover .tooltip,
@@ -205,6 +207,9 @@ input:active {
   .record div:nth-child(4) {
     padding-right: 18px;
   }
+  div:nth-child(3) {
+    border-radius: 0 8px 0 0;
+  }
 }
 @media screen and (max-width: 515px) {
   .record div:nth-child(4) {
@@ -212,8 +217,9 @@ input:active {
   }
 }
 @media screen and (max-width: 500px) {
-  .record div:nth-child(4) {
-    padding-right: 0px;
+  .record div:nth-child(2),
+  .record div:nth-child(3) {
+    flex-shrink: 0;
   }
 }
 @media screen and (max-width: 384px) {
