@@ -27,7 +27,7 @@ deleteButtonBlock.style.borderRadius = "0 8px 0 0";
 // Создаем изображение для кнопки удаления
 const deleteButtonImg = document.createElement("img");
 deleteButtonImg.src = "./images/delete.svg";
-deleteButtonImg.className = "img-delete";
+// deleteButtonImg.className = "img-delete";
 
 // Собираем элементы в родительский блок для фиксированной записи
 firstRecordDiv.appendChild(firstRecordNumber);  
@@ -47,7 +47,7 @@ function updateRecordNumbers() {
         if (record === firstRecordDiv) return;
 
         const recordNumber = record.querySelector(".record-number");
-        const deleteButtonBlock = record.querySelector(".img-delete");
+        const deleteButtonContainer = record.querySelector(".delete-button-container");
 
         if (recordNumber) {
             recordNumber.textContent = index + 1;  
@@ -59,12 +59,12 @@ function updateRecordNumbers() {
             }
         }
 
-        if (deleteButtonBlock) {
+        if (deleteButtonContainer) {
             
             if (index === records.length - 1) {
-                deleteButtonBlock.style.borderRadius = "0 0 8px 0";  
+                deleteButtonContainer.style.borderRadius = "0 0 8px 0";  
             } else {
-                deleteButtonBlock.style.borderRadius = "0";  
+                deleteButtonContainer.style.borderRadius = "0";  
             }
         }
 
